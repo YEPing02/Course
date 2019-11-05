@@ -1,4 +1,4 @@
-package GestionInscription;
+package gestioninscription;
 
 public enum EtatInscription {
 	encour,

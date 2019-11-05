@@ -1,4 +1,4 @@
-package GestionCourse;
+package gestioncourse;
 
 public enum EtatEdition {
 	insOuverte,

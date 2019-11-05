@@ -1,6 +1,7 @@
-package GestionCourse;
+package gestioncourse;
 import java.util.ArrayList;
-import GestionInscription.*;
+
+import gestioninscription.*;
 
 public class Speciale {
 	private int numSpeciale;

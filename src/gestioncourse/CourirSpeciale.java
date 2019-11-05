@@ -1,5 +1,5 @@
-package GestionCourse;
-import GestionInscription.Inscription;
+package gestioncourse;
+import gestioninscription.Inscription;
 
 public class CourirSpeciale {
 	private double tempsSpeciale; 
