@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Set;
 
-public class Edition {
+public abstract class Edition {
 	private int numEdition;
 	private String dateFin;
 	private String annee;

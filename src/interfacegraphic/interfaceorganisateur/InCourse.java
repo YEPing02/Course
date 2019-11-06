@@ -17,6 +17,8 @@ import javax.swing.event.ListSelectionListener;
 
 import donnee.Donnee;
 import gestioncourse.Course;
+import interfacegraphic.interfaceorganisateur.F1.InEditionF1;
+import interfacegraphic.interfaceorganisateur.Rallye.InEditionRallye;
 
 import javax.swing.event.ListSelectionEvent;
 
@@ -31,6 +33,8 @@ public class InCourse extends JFrame {
 	private JTextField textFieldNom;
 	private JList<String> listCourse;
 	private JLabel lblTypeaffi;
+	
+	
 	public InCourse(Donnee d) {
 		
 		// quand on retoune sur le frame(depuis frame de ajout), acualise la liste
@@ -59,8 +63,21 @@ public class InCourse extends JFrame {
 		btnContinuer.setEnabled(false);
 		btnContinuer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				InEdition ie = new InEdition(d.getCourse(listCourse.getSelectedIndex()));
-				ie.setVisible(true);
+				
+				switch (d.getCourse(listCourse.getSelectedIndex()).getClass().getSimpleName()) {
+					case "CourseRallye": 
+						System.out.println(1);
+						InEditionRallye ieR = new InEditionRallye(d.getCourse(listCourse.getSelectedIndex()));
+						ieR.setVisible(true);
+						break;
+					case "CourseF1": 
+						System.out.println(2);
+						InEditionF1 ieF = new InEditionF1(d.getCourse(listCourse.getSelectedIndex()));
+						ieF.setVisible(true);
+						break;
+				}
+				
+				
 			}
 		});
 		btnContinuer.setBounds(325, 259, 85, 21);
@@ -136,8 +153,6 @@ public class InCourse extends JFrame {
 
 	
 	public void init(ArrayList<Course> lstC) {
-		
-		
 		// initialiser la liste des course
 		DefaultListModel<String> dlm = new DefaultListModel<String>();// modèle qui va être affiché dans la liste
 		for(Course c : lstC) {

@@ -1,4 +1,4 @@
-package interfacegraphic.interfaceorganisateur;
+package interfacegraphic.interfaceorganisateur.Rallye;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -13,6 +13,7 @@ import javax.swing.event.ListSelectionListener;
 import donnee.Donnee;
 import gestioncourse.Course;
 import gestioncourse.Edition;
+import interfacegraphic.interfaceorganisateur.F1.InEtapeF1;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -24,7 +25,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.awt.event.ActionEvent;
 
-public class InEdition extends JFrame {
+public class InEditionRallye extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldA;
@@ -37,12 +38,12 @@ public class InEdition extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InEdition(Course c) {
+	public InEditionRallye(Course cr) {
 
 		// quand on retoune sur le frame(depuis frame de ajout), acualise la liste
 		addWindowFocusListener(new WindowFocusListener() {
 			public void windowGainedFocus(WindowEvent e) {
-				init(c);
+				init(cr);
 			}
 
 			public void windowLostFocus(WindowEvent e) {
@@ -93,7 +94,7 @@ public class InEdition extends JFrame {
 		btnContinuer.setEnabled(false);
 		btnContinuer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				InEtape ie = new InEtape(c.getEdition(listEdition.getSelectedIndex()), c);
+				InEtapeRallye ie = new InEtapeRallye(cr.getEdition(listEdition.getSelectedIndex()), cr);
 				ie.setVisible(true);
 			}
 		});
@@ -107,10 +108,10 @@ public class InEdition extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				if (listEdition.getSelectedIndex() != -1) {
-					c.getEdition(listEdition.getSelectedIndex()).setAnnee(textFieldA.getText());
-					c.getEdition(listEdition.getSelectedIndex()).setDateDeb(textFieldDd.getText());
-					c.getEdition(listEdition.getSelectedIndex()).setDateFin(textFieldDf.getText());
-					init(c);
+					cr.getEdition(listEdition.getSelectedIndex()).setAnnee(textFieldA.getText());
+					cr.getEdition(listEdition.getSelectedIndex()).setDateDeb(textFieldDd.getText());
+					cr.getEdition(listEdition.getSelectedIndex()).setDateFin(textFieldDf.getText());
+					init(cr);
 				}
 			}
 		});
@@ -126,7 +127,7 @@ public class InEdition extends JFrame {
 				if (listEdition.getSelectedIndex() != -1) {
 					btnContinuer.setEnabled(true);
 					btnModifier.setEnabled(true);
-					afficherEditionSelected(c.getEdition(listEdition.getSelectedIndex()));
+					afficherEditionSelected(cr.getEdition(listEdition.getSelectedIndex()));
 				} else {
 					btnContinuer.setEnabled(false);
 					btnModifier.setEnabled(false);
@@ -143,7 +144,7 @@ public class InEdition extends JFrame {
 		// ajouter
 		btnAjouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				InCreationEdition iced = new InCreationEdition(c);
+				InCreationEditionRallye iced = new InCreationEditionRallye(cr);
 				iced.setVisible(true);
 			}
 		});
@@ -153,7 +154,7 @@ public class InEdition extends JFrame {
 		JLabel label = new JLabel(":");
 		label.setBounds(279, 20, 13, 13);
 		contentPane.add(label);
-		init(c);
+		init(cr);
 	}
 
 	private void init(Course c) {

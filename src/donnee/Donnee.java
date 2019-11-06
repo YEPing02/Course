@@ -24,24 +24,24 @@ public class Donnee {
 	    
 	    
 	    public void init() {
-
 	        lstType.add("Rallye");
-	        lstType.add("Régate");
-	        lstType.add("Vélo");
-	        lstType.add("Courir");	        
+	        lstType.add("F1");        
 	        lstCourse.add(new CourseRallye("RallyeParis"));
 	        lstCourse.add(new CourseRallye("RallyeToulouse"));
 	        lstCourse.add(new CourseRallye("RallyeMarseille"));
 	        
-	        lstCourse.get(0).ajouterEditon(new Edition(1, "2016/01/01", "2016/02/01", "2016"));
-	        lstCourse.get(0).ajouterEditon(new Edition(2, "2017/01/01", "2017/02/01", "2017"));
-	        lstCourse.get(0).ajouterEditon(new Edition(3, "2018/01/01", "2018/02/01", "2018"));
-	        lstCourse.get(0).ajouterEditon(new Edition(4, "2019/01/01", "2019/02/01", "2019"));
+	        lstCourse.get(0).ajouterEditon(new EditionRallye(1, "2016/01/01", "2016/02/01", "2016"));
+	        lstCourse.get(0).ajouterEditon(new EditionRallye(2, "2017/01/01", "2017/02/01", "2017"));
+	        lstCourse.get(0).ajouterEditon(new EditionRallye(3, "2018/01/01", "2018/02/01", "2018"));
+	        lstCourse.get(0).ajouterEditon(new EditionRallye(4, "2019/01/01", "2019/02/01", "2019"));
 	        
-	        lstCourse.get(0).getEdition(0).ajouterEtape(new Etape(0, 2, 00, 00));
-	        lstCourse.get(0).getEdition(0).ajouterEtape(new Etape(1, 3, 00, 00));
-	        lstCourse.get(0).getEdition(0).ajouterEtape(new Etape(2, 4, 30, 00));
-	        lstCourse.get(0).getEdition(0).ajouterEtape(new Etape(3, 4, 00, 00));
+	        lstCourse.get(0).getEdition(0).ajouterEtape(new EtapeRallye(0, 1,1, 34.54f));
+	        lstCourse.get(0).getEdition(0).ajouterEtape(new EtapeRallye(1, 3, 0, 0f));
+	        lstCourse.get(0).getEdition(0).ajouterEtape(new EtapeRallye(2, 4, 30, 0f));
+	        lstCourse.get(0).getEdition(0).ajouterEtape(new EtapeRallye(3, 4, 0, 0f));
+	        
+//	        lstCourse.get(0).getEdition(0).getEtape(0)).
+	        
 	    }
 	    
 	    

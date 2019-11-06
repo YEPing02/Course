@@ -1,4 +1,4 @@
-package interfacegraphic.interfaceorganisateur;
+package interfacegraphic.interfaceorganisateur.Rallye;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import gestioncourse.Course;
 import gestioncourse.Edition;
+import gestioncourse.EditionRallye;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -16,18 +17,17 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class InCreationEdition extends JFrame {
+public class InCreationEditionRallye extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldA;
 	private JTextField textFieldDf;
 	private JLabel lblNum;
 	private JTextField textFieldNum;
-
 	/**
 	 * Create the frame.
 	 */
-	public InCreationEdition(Course c) {
+	public InCreationEditionRallye(Course c) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -67,7 +67,7 @@ public class InCreationEdition extends JFrame {
 		//confirmer l'ajout
 		btnConfirmer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				c.ajouterEditon(new Edition(Integer.valueOf(textFieldNum.getText()), textFieldDd.getText(), textFieldDf.getText(), textFieldA.getText()));				
+				c.ajouterEditon(new EditionRallye(Integer.valueOf(textFieldNum.getText()), textFieldDd.getText(), textFieldDf.getText(), textFieldA.getText()));				
 				dispose();
 			}
 		});

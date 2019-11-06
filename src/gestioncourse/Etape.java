@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class Etape {
+public abstract class Etape {
 	private int numEtape;
-	private int tempsLimiteEtape;
+	private float tempsLimiteEtape;
 	private HashMap<Inscription,Integer> mapInsEtape;
 	private ArrayList<HashMap.Entry<Inscription,Integer>> classementEtape;
 	
 	
-	public Etape (int numEtape, int tempsLimiteH, int tempsLimiteM,int tempsLimiteS) {
-		this.tempsLimiteEtape=tempsLimiteH;
+	public Etape (int numEtape, int tempsLimiteH, int tempsLimiteM,float tempsLimiteS) {
+		enregistrerTemps(tempsLimiteH, tempsLimiteM, tempsLimiteS);
 		this.numEtape = numEtape;
 		this.mapInsEtape = new  HashMap<Inscription,Integer>();
 		this.classementEtape = new ArrayList<HashMap.Entry<Inscription,Integer>>();
@@ -25,8 +25,31 @@ public class Etape {
 		return this.numEtape;
 	}
 	
+	public void enregistrerTemps(int tempsLimiteH, int tempsLimiteM,float tempsLimiteS) {
+		this.tempsLimiteEtape=tempsLimiteH*3600+tempsLimiteM*60+tempsLimiteS;
+	}
 	
-	public int getTempsLimiteEtape() {
+	public String getStringTempsLimite() {		
+		String s= new String();
+		s+=(int)(tempsLimiteEtape/3600)+"H "+(int)(tempsLimiteEtape%3600/60)+"'";
+		s+=(float)(Math.round(tempsLimiteEtape%3600%60*100))/100;
+		return s;				
+	}
+	//
+	public int getHeure() {
+		return (int)(tempsLimiteEtape/3600);
+	}
+	public int getMinute() {
+		return (int)(tempsLimiteEtape%3600/60);
+	}
+	
+	public float getSeconde() {
+		return (float)(Math.round(tempsLimiteEtape%3600%60*100))/100;
+	}
+	
+	//
+	
+	public float getTempsLimiteEtape() {
 		return tempsLimiteEtape;
 	}
 

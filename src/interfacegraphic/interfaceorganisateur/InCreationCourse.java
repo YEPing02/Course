@@ -17,11 +17,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class InCreationCourse extends JFrame {
-
 	private JPanel contentPane;
 	private JTextField textField;
 	private JComboBox comboBoxlistType;
-	
 
 
 	/**
@@ -62,13 +60,7 @@ public class InCreationCourse extends JFrame {
 					d.ajoutCourse(new CourseRallye(n));
 					break;
 				case 1:
-					d.ajoutCourse(new CourseRegate(n));
-					break;
-				case 2 : 
-					d.ajoutCourse(new CourseVelo(n));
-					break;
-				case 3 : 
-					d.ajoutCourse(new CourseCourir(n));
+					d.ajoutCourse(new CourseF1(n));
 					break;
 				}
 				dispose();
@@ -80,16 +72,12 @@ public class InCreationCourse extends JFrame {
 		init(d.getLstType());
 		
 	}
-	
-	
 
-	
 	public void init(ArrayList<String> lstType) {
 		for(String s : lstType) {
 			getComboBoxlistType().addItem(s);
 		}
 	}
-
 	public JComboBox getComboBoxlistType() {
 		return comboBoxlistType;
 	}
