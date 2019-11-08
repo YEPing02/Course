@@ -1,13 +1,15 @@
-import java.awt.EventQueue;
-
 import donnee.Donnee;
-import interfacegraphic.interfaceorganisateur.*;
+import interfacegraphic.Accueil;
 
 public class Main {
 	public static void main(String[] arg) {
-		Donnee d= new Donnee();
-		InCourse ic= new InCourse(d);
-		ic.setVisible(true);
-//			System.out.println(d.getCourse(0).getEdition(0).getEtape(0).getStringTempsLimite());
+		Donnee d = new Donnee();
+		Accueil a = new Accueil(d);
+		a.setVisible(true);
+
+		/*
+		 * L'indication pour la partie de l'inscription (implantation de la base de
+		 * donné) est mis dans interfacegraphic.Accueil
+		 */
 	}
 }

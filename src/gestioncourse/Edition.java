@@ -1,22 +1,26 @@
 package gestioncourse;
 
 import gestioninscription.*;
+
+import java.security.KeyStore.Entry;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public abstract class Edition {
-	private int numEdition;
-	private String dateFin;
-	private String annee;
-	private String dateDeb;
-	private EtatEdition etatEdition;
-	private ArrayList<Etape> listeEtape;
-	private ArrayList<Inscription> listeInscrip;
-	private HashMap<Inscription, Integer> mapInsEdition;
-	private ArrayList<HashMap.Entry<Inscription, Integer>> classementGeneral;
+	protected int numEdition;
+	protected String dateFin;
+	protected String annee;
+	protected String dateDeb;
+	protected EtatEdition etatEdition;
+	protected ArrayList<Etape> listeEtapeT;
+	protected ArrayList<Inscription> listeInscrip;
+	protected HashMap<Inscription, Integer> mapInsEdition;
+	protected ArrayList<HashMap.Entry<Inscription, Integer>> classementGeneral;
 
 	public Edition(int numEdition, String dateDeb, String dateFin, String annee) {
 		this.numEdition = numEdition;
@@ -24,11 +28,15 @@ public abstract class Edition {
 		this.dateFin = dateFin;
 		this.annee = annee;
 		this.etatEdition = EtatEdition.insOuverte;
-		this.listeEtape = new ArrayList<Etape>();
+		this.listeEtapeT = new ArrayList<Etape>();
 		this.listeInscrip = new ArrayList<Inscription>();
 		this.mapInsEdition = new HashMap<Inscription, Integer>();
 		this.classementGeneral = new ArrayList<HashMap.Entry<Inscription, Integer>>();
 	}
+
+	public Etape getEtapeT(int i) {
+		return this.listeEtapeT.get(i);
+	};
 
 	public int getNumEdition() {
 		return numEdition;
@@ -70,16 +78,12 @@ public abstract class Edition {
 		this.etatEdition = etatEdition;
 	}
 
-	public ArrayList<Etape> getListeEtape() {
-		return listeEtape;
-	}
-
-	public Etape getEtape(int i) {
-		return listeEtape.get(i);
+	public ArrayList<Etape> getListeEtapeT() {
+		return listeEtapeT;
 	}
 
 	public void setListeEtape(ArrayList<Etape> listeEtape) {
-		this.listeEtape = listeEtape;
+		this.listeEtapeT = listeEtape;
 	}
 
 	public ArrayList<Inscription> getListeInscrip() {
@@ -99,6 +103,8 @@ public abstract class Edition {
 	}
 
 	public ArrayList<HashMap.Entry<Inscription, Integer>> getClassementGeneral() {
+		this.classementGeneral = new ArrayList<HashMap.Entry<Inscription, Integer>>();
+		classementEdition();
 		return classementGeneral;
 	}
 
@@ -107,11 +113,12 @@ public abstract class Edition {
 	}
 
 	public void ajouterEtape(Etape e) {
-		this.listeEtape.add(e);
+		this.listeEtapeT.add(e);
 	}
 
 	public void ajouterInscrip(Inscription i) {
 		this.listeInscrip.add(i);
+		this.mapInsEdition.put(i, 0);
 	}
 
 	public void organiserEdition() {
@@ -120,24 +127,11 @@ public abstract class Edition {
 		}
 	}
 
-	public void classementEdition() {
-		for (Inscription ins : this.mapInsEdition.keySet()) {
-			int tempsEdition = 0;
-			for (int i = 0; i < listeEtape.size(); i++) {
-				listeEtape.get(i).classementEtape();
-				tempsEdition += (listeEtape.get(i).getMapInsEtape().get(ins));
-			}
-			this.mapInsEdition.put(ins, tempsEdition);
-		}
+	public abstract void classementEdition();
 
-		Set<HashMap.Entry<Inscription, Integer>> entrySet = mapInsEdition.entrySet();
-		classementGeneral = new ArrayList<HashMap.Entry<Inscription, Integer>>(entrySet);
-		Collections.sort(classementGeneral, new Comparator<HashMap.Entry<Inscription, Integer>>() {
-			// @Override
-			public int compare(HashMap.Entry<Inscription, Integer> c1, HashMap.Entry<Inscription, Integer> c2) {
-				return c1.getValue().compareTo(c2.getValue());
-			}
-		});
+	public ArrayList<HashMap.Entry<Inscription, Integer>> getClassement() {
+		classementEdition();
+		return this.classementGeneral;
 	}
 
 }

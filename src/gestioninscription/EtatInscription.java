@@ -1,7 +1,5 @@
 package gestioninscription;
 
 public enum EtatInscription {
-	encour,
-	validee,
-	annulee;
+	encour, validee, annulee;
 }

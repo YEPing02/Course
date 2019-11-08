@@ -1,8 +1,5 @@
 package gestioncourse;
 
 public enum EtatEdition {
-	insOuverte,
-	insTerminee,
-	encours,
-	interrompue;
+	insOuverte, insTerminee, encours, interrompue;
 }
